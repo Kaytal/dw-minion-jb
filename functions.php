@@ -54,34 +54,4 @@ function minion_features_image_as_og_image() {
 	?><meta property="og:image" content="<?php echo $thumb[0] ?>" /><?php
 }
 
-// load style for dw qa plugin
-if( !function_exists('dwqa_minion_scripts') ){
-	function dwqa_minion_scripts(){
-	    wp_enqueue_style( 'dw-minion-jb-qa', get_stylesheet_directory_uri() . '/dwqa-templates/style.css' );
-	}
-	add_action( 'wp_enqueue_scripts', 'dwqa_minion_scripts' );
-}
-
-// TGM plugin activation
-require_once get_template_directory() . '/inc/class-tgm-plugin-activation.php';
-function alx_plugins() {
-	$plugins = array(
-		array(
-			'name' 				=> 'DW Question & Answer',
-			'slug' 				=> 'dw-question-answer',
-			'source'			=> false,
-			'required'			=> false,
-			'force_activation' 	=> false,
-			'force_deactivation'=> false,
-		),
-		array(
-			'name' 				=> 'Contact Form 7',
-			'slug' 				=> 'contact-form-7',
-			'required'			=> false,
-			'force_activation' 	=> false,
-			'force_deactivation'=> false,
-		)
-	);	
-	tgmpa( $plugins );
-}
 add_action( 'tgmpa_register', 'alx_plugins' );
